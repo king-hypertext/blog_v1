@@ -1,0 +1,27 @@
+#app{
+    height: 100vh;
+    
+}
+.bg-picture::before {
+    filter: blur(1px);
+    -moz-filter: blur(1px);
+    -webkit-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+}
+
+.bg-picture {
+    background: url(../images/cover.jpeg);
+}
+
+.bg-picture.bg\:primary {
+    background-size: cover;
+    background-color: rgba(0, 51, 255, 0.63);
+    background-blend-mode: multiply;
+}
+
+.bg-picture.bg\:dark {
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.63);
+    background-blend-mode: multiply;
+}

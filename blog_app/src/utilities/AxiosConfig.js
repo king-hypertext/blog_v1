@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 // Create an instance of axios
-axios.defaults.withCredentials = true;
-axios.defaults.withXSRFToken = true;
+// axios.defaults.withCredentials = true;
+// axios.defaults.withXSRFToken = true;
 
 const apiClient = axios.create({
     baseURL: 'http://localhost:8000/api',
@@ -51,9 +51,10 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response.status === 401) {
+        const {response} = error;
+        if (response.status === 401) {
             window.localStorage.removeItem('access_token');
-            window.location.href = '/login';
+            // window.location.href = '/';
         }
         return Promise.reject(error);
     }

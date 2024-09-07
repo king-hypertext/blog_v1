@@ -8,8 +8,8 @@ const Context = createContext({
     // setProfile: () => {},
     // notifications: [],
     // setNotifications: () => {},
-    // posts: [],
-    // setPosts: () => {},
+    posts: [],
+    setPosts: () => { },
     // comments: [],
     // setComments: () => {},
     // likes: [],
@@ -18,13 +18,14 @@ const Context = createContext({
 });
 export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState(null);
     const [accessToken, setToken] = useState(window.localStorage.getItem('access_token'));
     const setAccessToken = (token) => {
-        setToken(token);
+        setToken(token);    
         token ? window.localStorage.setItem('access_token', token) : window.localStorage.removeItem('access_token');
     }
     return (
-        <Context.Provider value={{ user, setUser, accessToken, setAccessToken }}>
+        <Context.Provider value={{ user, setUser, accessToken, setAccessToken, posts, setPosts }}>
             {children}
         </Context.Provider>
     );
@@ -36,3 +37,5 @@ export const ContextProvider = ({ children }) => {
 // const [comments, setComments] = useState([]);
 // const [likes, setLikes] = useState([]);
 // }
+
+export const useStateContext = () => useContext(Context);
